@@ -1,0 +1,55 @@
+<html>
+	<head>
+	<script type="text/javascript">
+		var navigate = function(){
+			s = document.getElementById('itemChooser');
+			window.location.href = "/?q=" + s.value
+
+		};
+
+		
+	</script>
+	</head>
+	<body>
+
+	{% if payload %}
+
+		<select id="itemChooser" value="{{ payload.0.oID }}" onchange="navigate()">
+		{% for i in allTitles %}
+			<option value="{{i.title}}">{{i.title}}</option>
+		{% endfor %}
+
+		</select>
+
+
+		<br><br><hr><br>
+
+
+		<table style="border:1px solid" id="displayTable">
+			<thead>
+				<th>Position</th>
+				<th>Item</th>
+				<th>Completed</th>
+			</thead>
+			{% for i in payload %}
+			<tr>
+				<td>{{ i.position }}</td>
+				<td> {{ i.item }}</td>
+				
+				{% if i.completed %}
+				<td style="text-align:center">X</td>
+				{% endif %}
+			</tr>
+			{% endfor %}
+		</table>
+	{% else %}
+		<p>No Data Found</p>
+	{% endif %}
+
+
+	</body>
+	<script type="text/javascript">
+		s = document.getElementById('itemChooser');
+		s.value = "{{ payload.0.oID }}";
+	</script>
+</html>

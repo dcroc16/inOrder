@@ -1,0 +1,20 @@
+<html>
+	<body>
+
+		<h2>Database Table: Order List Items</h2>
+		<ul>
+			{% for item in object_list %}
+				<li>ID  : {{ item.id}}</li>
+				<li>oID : {{ item.oID }}</li>
+				<li>pos : {{ item.position }} </li>
+				<li>Item: {{ item.item }}</li>
+				<hr>
+
+			{% endfor %}
+
+		</ul>
+
+
+	</body>
+
+</html>
